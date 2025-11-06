@@ -95,14 +95,30 @@ const App = () => {
           }
         />
         <Route path='*' element={<NotFound404 />} />
-        <Route path='/feed/:number' element={<OrderInfo />} />
-        <Route path='/ingredients/:id' element={<IngredientDetails />} />
+        <Route
+          path='/feed/:number'
+          element={
+            <div className={styles.app}>
+              <OrderInfo />
+            </div>
+          }
+        />
+        <Route
+          path='/ingredients/:id'
+          element={
+            <div className={styles.app}>
+              <IngredientDetails />
+            </div>
+          }
+        />
         <Route
           path='/profile/orders/:number'
           element={
-            <ProtectedRoute>
-              <OrderInfo />
-            </ProtectedRoute>
+            <div className={styles.app}>
+              <ProtectedRoute>
+                <OrderInfo />
+              </ProtectedRoute>
+            </div>
           }
         />
       </Routes>
