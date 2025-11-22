@@ -86,10 +86,12 @@ export const constructorSlice = createSlice({
     builder
       .addCase(createBurgerThunk.pending, (state) => {
         state.isLoad = true;
+        state.orderRequest = true;
         state.constructorError = null;
       })
       .addCase(createBurgerThunk.rejected, (state, action) => {
         state.isLoad = false;
+        state.orderRequest = false;
         state.constructorError = action.error.message as string;
       })
       .addCase(createBurgerThunk.fulfilled, (state, action) => {

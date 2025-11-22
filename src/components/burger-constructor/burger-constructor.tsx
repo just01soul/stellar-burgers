@@ -1,11 +1,12 @@
 import { FC, useMemo } from 'react';
 import { TConstructorIngredient } from '@utils-types';
-import { BurgerConstructorUI } from '@ui';
+import { BurgerConstructorUI, Preloader } from '@ui';
 import { useNavigate } from 'react-router-dom';
 import store, { useDispatch, useSelector } from '../../services/store';
 import {
   clearOrderModalData,
   constructorDataSelector,
+  constructorStateSelector,
   createBurgerThunk,
   isAuthSelector,
   orderModalDataSelector,
@@ -20,6 +21,7 @@ export const BurgerConstructor: FC = () => {
   const constructorItems = useSelector(constructorDataSelector);
   const orderRequest = useSelector(orderRequestSelector);
   const orderModalData = useSelector(orderModalDataSelector);
+  const load = useSelector(constructorStateSelector);
 
   const onOrderClick = () => {
     if (!isAuth) {
@@ -34,6 +36,7 @@ export const BurgerConstructor: FC = () => {
 
     dispatch(createBurgerThunk(order));
   };
+
   const closeOrderModal = () => {
     dispatch(setOrderRequest(false));
     dispatch(clearOrderModalData());
