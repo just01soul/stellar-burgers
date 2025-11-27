@@ -21,7 +21,7 @@ export interface UserState {
   isAuthChecked: boolean; // флаг для провекрки авторизации
 }
 
-const initialState: UserState = {
+export const initialState: UserState = {
   isLoad: false,
   user: null,
   isAuth: false,

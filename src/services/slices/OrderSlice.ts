@@ -9,7 +9,7 @@ export interface OrderState {
   orderError: string | null; // Ошибка в заказе
 }
 
-const initialState: OrderState = {
+export const initialState: OrderState = {
   isLoad: false,
   orders: [],
   order: null,

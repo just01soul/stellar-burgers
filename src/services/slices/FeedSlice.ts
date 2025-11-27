@@ -10,7 +10,7 @@ export interface FeedsState {
   feedError: string | null;
 }
 
-const initialState: FeedsState = {
+export const initialState: FeedsState = {
   isLoad: false,
   orders: [],
   total: 0,
@@ -57,3 +57,4 @@ export const {
   feedTotalSelector,
   feedTotalTodaySelector
 } = feedSlice.selectors;
+

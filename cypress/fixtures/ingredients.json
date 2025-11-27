@@ -1,0 +1,75 @@
+{
+  "success": true,
+  "data": [
+    {
+      "_id": "1",
+      "name": "Фиолетовая булочка",
+      "type": "bun",
+      "proteins": 15,
+      "fat": 16,
+      "carbohydrates": 17,
+      "calories": 100,
+      "price": 1000,
+      "image": "https://code.s3.yandex.net/react/code/bun-01.png",
+      "image_mobile": "https://code.s3.yandex.net/react/code/bun-01-mobile.png",
+      "image_large": "https://code.s3.yandex.net/react/code/bun-01-large.png",
+      "__v": 0
+    },
+    {
+      "_id": "2",
+      "name": "Синяя котлета",
+      "type": "main",
+      "proteins": 25,
+      "fat": 26,
+      "carbohydrates": 27,
+      "calories": 200,
+      "price": 2000,
+      "image": "https://code.s3.yandex.net/react/code/meat-03.png",
+      "image_mobile": "https://code.s3.yandex.net/react/code/meat-03-mobile.png",
+      "image_large": "https://code.s3.yandex.net/react/code/meat-03-large.png",
+      "__v": 0
+    },
+    {
+      "_id": "3",
+      "name": "Соус голубенький",
+      "type": "sauce",
+      "proteins": 35,
+      "fat": 36,
+      "carbohydrates": 37,
+      "calories": 300,
+      "price": 3000,
+      "image": "https://code.s3.yandex.net/react/code/sauce-04.png",
+      "image_mobile": "https://code.s3.yandex.net/react/code/sauce-04-mobile.png",
+      "image_large": "https://code.s3.yandex.net/react/code/sauce-04-large.png",
+      "__v": 0
+    },
+    {
+      "_id": "4",
+      "name": "салат голубой с фиолетовой сердцевиной",
+      "type": "main",
+      "proteins": 45,
+      "fat": 46,
+      "carbohydrates": 47,
+      "calories": 400,
+      "price": 4000,
+      "image": "https://code.s3.yandex.net/react/code/salad.png",
+      "image_mobile": "https://code.s3.yandex.net/react/code/salad-mobile.png",
+      "image_large": "https://code.s3.yandex.net/react/code/salad-large.png",
+      "__v": 0
+    },
+    {
+      "_id": "5",
+      "name": "Оранжевый сыр",
+      "type": "main",
+      "proteins": 55,
+      "fat": 56,
+      "carbohydrates": 57,
+      "calories": 500,
+      "price": 5000,
+      "image": "https://code.s3.yandex.net/react/code/cheese.png",
+      "image_mobile": "https://code.s3.yandex.net/react/code/cheese-mobile.png",
+      "image_large": "https://code.s3.yandex.net/react/code/cheese-large.png",
+      "__v": 0
+    }
+  ]
+}
