@@ -21,7 +21,7 @@ export interface UserState {
   isAuthChecked: boolean; // флаг для провекрки авторизации
 }
 
-export const initialState: UserState = {
+const initialState: UserState = {
   isLoad: false,
   user: null,
   isAuth: false,
@@ -206,6 +206,7 @@ export const userSlice = createSlice({
   }
 });
 
+export { initialState as userInitialState };
 export default userSlice.reducer;
 export const { clearUserError } = userSlice.actions;
 export const {

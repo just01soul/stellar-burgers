@@ -1,5 +1,5 @@
 import reducer, { 
-  initialState,
+  ingredientsInitialState,
   getIngredientsThunk 
 } from './BurgerIngredientsSlice';
 
@@ -36,7 +36,7 @@ const mockMain = () => ({
 describe('Вызов экшена Request', () => {
   test('isLoad имеет значение true, а старые ошибки сбрасываются', () => {
     const startState = {
-      ...initialState,
+      ...ingredientsInitialState,
       ingredientsError: 'Предыдущая ошибка'
     };
     const action = { type: getIngredientsThunk.pending.type };
@@ -55,7 +55,7 @@ describe('Вызов экшена Success', () => {
 
   test('isLoad имеет значение false', () => {
     const loadingState = {
-      ...initialState,
+      ...ingredientsInitialState,
       isLoad: true
     };
     const newState = reducer(loadingState, action);
@@ -64,7 +64,7 @@ describe('Вызов экшена Success', () => {
   });
 
   test('ingredients должны записываться в стор', () => {
-    const newState = reducer(initialState, action);
+    const newState = reducer(ingredientsInitialState, action);
 
     expect(newState.ingredients).toEqual([mockSauce(), mockMain()]);
     expect(newState.ingredients).toHaveLength(2);
@@ -74,7 +74,7 @@ describe('Вызов экшена Success', () => {
 
   test('Ошибки сбрасываются', () => {
     const errorState = {
-      ...initialState,
+      ...ingredientsInitialState,
       ingredientsError: 'Предыдущая ошибка',
       isLoad: true
     };
@@ -85,7 +85,7 @@ describe('Вызов экшена Success', () => {
 
   test('Замена существующих ингредиентов', () => {
     const startState = {
-      ...initialState,
+      ...ingredientsInitialState,
       ingredients: [
         { ...mockMain(), id: '0', _id: 'old', name: 'Старый ингредиент', price: 50 }
       ],
@@ -102,7 +102,7 @@ describe('Вызов экшена Success', () => {
 
 describe('Вызов экшена Failed', () => {
   const startState = {
-    ...initialState,
+    ...ingredientsInitialState,
     isLoad: true
   };
   const action = { 
@@ -122,7 +122,7 @@ describe('Вызов экшена Failed', () => {
       ...action,
       error: { message: errorMessage }
     };
-    const newState = reducer(initialState, errorAction);
+    const newState = reducer(ingredientsInitialState, errorAction);
 
     expect(newState.ingredientsError).toBe(errorMessage);
   });

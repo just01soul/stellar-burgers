@@ -9,7 +9,7 @@ export interface OrderState {
   orderError: string | null; // Ошибка в заказе
 }
 
-export const initialState: OrderState = {
+const initialState: OrderState = {
   isLoad: false,
   orders: [],
   order: null,
@@ -64,6 +64,7 @@ export const orderSlice = createSlice({
   }
 });
 
+export { initialState as orderInitialState };
 export default orderSlice.reducer;
 export const { ordersStateSelector, ordersDataSelector, orderDataSelector } =
   orderSlice.selectors;

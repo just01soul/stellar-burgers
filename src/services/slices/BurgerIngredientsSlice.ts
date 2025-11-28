@@ -8,7 +8,7 @@ export interface IngredientsState {
   ingredientsError: string | null;
 }
 
-export const initialState: IngredientsState = {
+const initialState: IngredientsState = {
   isLoad: false,
   ingredients: [],
   ingredientsError: null
@@ -45,6 +45,7 @@ export const ingredientsSlice = createSlice({
   }
 });
 
+export { initialState as ingredientsInitialState };
 export default ingredientsSlice.reducer;
 export const { ingredientsStateSelector, ingredientsDataSelector } =
   ingredientsSlice.selectors;

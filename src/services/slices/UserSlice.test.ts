@@ -1,5 +1,5 @@
 import reducer, { 
-  initialState,
+  userInitialState,
   loginUserThunk,
   logoutUserThunk,
   registerUserThunk,
@@ -13,13 +13,13 @@ import reducer, {
 describe('Экшены для loginUserThunk', () => {
   describe('Вызов экшена Request', () => {
     const startState = {
-      ...initialState,
+      ...userInitialState,
       loginUserError: 'Предыдущая ошибка'
     }
     const action = { type: loginUserThunk.pending.type };
 
     test('isLoad меняет значение на true', () => {
-      const newState = reducer(initialState, action);
+      const newState = reducer(userInitialState, action);
 
       expect(newState.isLoad).toBe(true);
     });
@@ -41,7 +41,7 @@ describe('Экшены для loginUserThunk', () => {
       refreshToken: 'refresh-token'
     };
     const startState = {
-      ...initialState,
+      ...userInitialState,
       isLoad: true
     };
     const action = { 
@@ -79,7 +79,7 @@ describe('Экшены для loginUserThunk', () => {
 
   describe('Вызов экшена Failed', () => {
      const startState = {
-        ...initialState,
+        ...userInitialState,
         isLoad: true
       };
       const action = { 
@@ -122,7 +122,7 @@ describe('Экшены для logoutUserThunk', () => {
   describe('Вызов экшена Request', () => {
     test('isLoad меняет значение на true', () => {
       const action = { type: logoutUserThunk.pending.type };
-      const newState = reducer(initialState, action);
+      const newState = reducer(userInitialState, action);
 
       expect(newState.isLoad).toBe(true);
     });
@@ -130,7 +130,7 @@ describe('Экшены для logoutUserThunk', () => {
 
   describe('Вызов экшена Success', () => {
     const startState = {
-      ...initialState,
+      ...userInitialState,
       isLoad: true
     };
     const action = { 
@@ -168,7 +168,7 @@ describe('Экшены для logoutUserThunk', () => {
 
   describe('Вызов экшена Failed', () => {
     const startState = {
-      ...initialState,
+      ...userInitialState,
       isLoad: true
     };
     const action = { 
@@ -202,7 +202,7 @@ describe('Экшены для registerUserThunk', () => {
       email: 'user@example.ru'
     };
     const startState = {
-      ...initialState,
+      ...userInitialState,
       isLoad: true
     };
 
@@ -235,7 +235,7 @@ describe('Экшены для forgotPasswordThunk и resetPasswordThunk', () => 
   describe('Вызов экшена Success', () => {
     test('forgotPasswordThunk: isLoad меняет значение на false', () => {
       const loadingState = {
-        ...initialState,
+        ...userInitialState,
         isLoad: true
       };
 
@@ -249,7 +249,7 @@ describe('Экшены для forgotPasswordThunk и resetPasswordThunk', () => 
 
     test('resetPasswordThunk: isLoad меняет значение на false', () => {
       const loadingState = {
-        ...initialState,
+        ...userInitialState,
         isLoad: true
       };
 
@@ -263,7 +263,7 @@ describe('Экшены для forgotPasswordThunk и resetPasswordThunk', () => 
 
     test('loginUserError должен сбрасываться в null', () => {
       const stateWithError = {
-        ...initialState,
+        ...userInitialState,
         loginUserError: 'Предыдущая ошибка',
         isLoad: true
       };
@@ -289,7 +289,7 @@ describe('Экшены для updateUserThunk', () => {
 
     test('isLoad меняет значение на false', () => {
       const loadingState = {
-        ...initialState,
+        ...userInitialState,
         isLoad: true
       };
 
@@ -304,7 +304,7 @@ describe('Экшены для updateUserThunk', () => {
 
     test('user должен обновляться', () => {
       const stateWithUser = {
-        ...initialState,
+        ...userInitialState,
         user: { name: 'Old User', email: 'old@example.com' }
       };
 
@@ -319,7 +319,7 @@ describe('Экшены для updateUserThunk', () => {
 
     test('isAuth должен оставаться true', () => {
       const stateWithAuth = {
-        ...initialState,
+        ...userInitialState,
         isAuth: true
       };
 
@@ -343,7 +343,7 @@ describe('Экшены для getUserThunk', () => {
       }
     };
     const startState = {
-      ...initialState,
+      ...userInitialState,
       isLoad: true
     };
     const action = { 
@@ -377,7 +377,7 @@ describe('Экшены для getUserThunk', () => {
 
   describe('Вызов экшена Failed', () => {
      const startState = {
-        ...initialState,
+        ...userInitialState,
         isAuth: true
       };
     const action = { 
@@ -401,7 +401,7 @@ describe('Экшены для getUserThunk', () => {
 
 describe('Редьюсер clearUserError', () => {
   const startState = {
-      ...initialState,
+      ...userInitialState,
       loginUserError: 'Какая-то ошибка'
     };
 

@@ -1,5 +1,3 @@
-const Url = 'http://localhost:4000';
-
 describe('Проверка доступности приложения', () => {
   beforeEach(() => {
     // Мокируем запросы
@@ -13,8 +11,13 @@ describe('Проверка доступности приложения', () => {
     window.localStorage.setItem('accessToken', 'test-access-token');
     window.localStorage.setItem('refreshToken', 'test-refresh-token');
     
-    cy.visit(Url);
+    cy.visit('/');
     cy.wait('@getIngredients');
+  });
+
+  afterEach(() => {
+    cy.clearLocalStorage();
+    cy.clearCookies();
   });
 
   describe('Добавление ингредиентов в конструктор', () => {
@@ -39,31 +42,43 @@ describe('Проверка доступности приложения', () => {
   });
 
   describe('Проверка модального окна', () => {
+    beforeEach(() => {
+        cy.get('[data-cy=ingredient-item]').first().as('ingredient');
+      });
+  
     it('Открытие модального окна ингредиента', () => {
-      cy.get('[data-cy=ingredient-item]').first().click();
-      cy.get('[data-cy=modal]').should('be.visible');
-      cy.get('[data-cy=ingredient-details]').should('be.visible');
-    });
-
+      cy.get('[data-cy=ingredient-item]').first().then((ingredient) => {
+        // Получаем данные из карточки
+        const ingredientName = ingredient.find('[data-cy=ingredient-name]').text();
+        const smallImage = ingredient.find('[data-cy=ingredient-image]').attr('src');
+        const largeImage = smallImage.replace('.png', '-large.png');
+      
+        cy.get('@ingredient').click();
+        cy.get('[data-cy=modal]').should('be.visible');
+        cy.get('[data-cy=ingredient-details]').should('be.visible');
+        cy.get('[data-cy=modal-ingredient-name]').should('have.text', ingredientName);
+        cy.get('[data-cy=modal-ingredient-image]').should('have.attr', 'src', largeImage);
+      });
+    }); 
     describe ('Закрытие модального окна', () => {
       beforeEach(() => {
-        cy.get('[data-cy=ingredient-item]').first().click();
-        cy.get('[data-cy=modal]').should('be.visible');
+        cy.get('@ingredient').click();
+        cy.get('[data-cy=modal]').as('modal').should('be.visible');
       });
 
       it('Закрытие модального окна по крестику', () => {
         cy.get('[data-cy=modal-close]').click();
-        cy.get('[data-cy=modal]').should('not.exist');
+        cy.get('@modal').should('not.exist');
       });
 
       it('Закрытие модального окна через оверлей', () => {
         cy.get('[data-cy=modal-overlay]').click({ force: true });
-        cy.get('[data-cy=modal]').should('not.exist');
+        cy.get('@modal').should('not.exist');
       });
 
       it('Закрытие через Escape (альтернативный способ)', () => {
         cy.document().trigger('keydown', { key: 'Escape' });
-        cy.get('[data-cy=modal]').should('not.exist');
+        cy.get('@modal').should('not.exist');
      });
     });
   });
@@ -81,6 +96,8 @@ describe('Проверка доступности приложения', () => {
       // Закрываем модальное окно
       cy.get('[data-cy=modal-close]').click();
       cy.get('[data-cy=modal]').should('not.exist');
+      cy.get('[data-cy=burger-constructor]').contains('Выберите булки').should('be.visible');
+      cy.get('[data-cy=burger-constructor]').contains('Выберите начинку').should('be.visible');
       cy.url().should('not.include', '/login');
     });
 
@@ -107,4 +124,6 @@ describe('Проверка доступности приложения', () => {
       cy.url().should('include', '/login');
     });
   });
+
+
 });

@@ -1,5 +1,5 @@
 import reducer, { 
-  initialState,
+  feedInitialState,
   getFeedsThunk 
 } from './FeedSlice';
 
@@ -7,7 +7,7 @@ describe('Вызов экшена Request', () => {
   const action = { type: getFeedsThunk.pending.type }
   test('isLoad имеет значение true, а старые ошибки сбрасываются', () => {
     const startState = {
-      ...initialState,
+      ...feedInitialState,
       feedError: 'Предыдущая ошибка'
     };
     const newState = reducer(startState, action);
@@ -18,7 +18,7 @@ describe('Вызов экшена Request', () => {
 
   test('Данные заказа не должны изменяться', () => {
     const stateData = {
-      ...initialState,
+      ...feedInitialState,
       orders: [
         { _id: '1', number: 1, name: 'Заказ', status: 'done', ingredients: [], createdAt: '2025/12/12', updatedAt: '2025/12/12' }
       ],
@@ -59,7 +59,7 @@ describe('Вызов экшена Success', () => {
     totalToday: 30
   };
   const startState = {
-    ...initialState,
+    ...feedInitialState,
     isLoad: true
   };
   const action = { 
@@ -74,7 +74,7 @@ describe('Вызов экшена Success', () => {
   });
 
   test('Данные заказа должны записаться в стор', () => {
-    const newState = reducer(initialState, action);
+    const newState = reducer(feedInitialState, action);
 
     expect(newState.orders).toEqual(mockFeed.orders);
     expect(newState.orders).toHaveLength(2);
@@ -96,7 +96,7 @@ describe('Вызов экшена Success', () => {
 
    test('Существующие данные должны заменяться', () => {
     const stateOldData = {
-      ...initialState,
+      ...feedInitialState,
       orders: [
         { _id: 'Старый', number: 1111, name: 'Старый заказ', status: 'done', ingredients: [], createdAt: '2025/01/01', updatedAt: '2025/01/01' }
       ],
@@ -114,7 +114,7 @@ describe('Вызов экшена Success', () => {
 
 describe('Вызов экшена Failed', () => {
   const startState = {
-    ...initialState,
+    ...feedInitialState,
     orders: [
       {
         _id: '1',
@@ -147,7 +147,7 @@ describe('Вызов экшена Failed', () => {
       ...action,
       error: { message: errorMessage }
     };
-    const newState = reducer(initialState, errorAction);
+    const newState = reducer(feedInitialState, errorAction);
 
     expect(newState.feedError).toBe(errorMessage);
   });

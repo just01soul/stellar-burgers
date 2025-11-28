@@ -1,5 +1,5 @@
 import reducer, { 
-  initialState,
+  orderInitialState,
   getOrdersThunk,
   getOrderThunk 
 } from './OrderSlice';
@@ -10,7 +10,7 @@ describe('Экшены для getOrdersThunk (получение списка з
 
     test('isLoad имеет значение true, а старые ошибки сбрасываются', () => {
       const startState = {
-        ...initialState,
+        ...orderInitialState,
         orderError: 'Предыдущая ошибка'
       };
       const newState = reducer(startState, action);
@@ -21,7 +21,7 @@ describe('Экшены для getOrdersThunk (получение списка з
 
     test('orders и order не должны изменяться', () => {
       const stateData = {
-        ...initialState,
+        ...orderInitialState,
         orders: [
           {
             _id: '1',
@@ -72,7 +72,7 @@ describe('Экшены для getOrdersThunk (получение списка з
       }
     ];
     const startState = {
-      ...initialState,
+      ...orderInitialState,
       isLoad: true
     };
     const action = { 
@@ -87,7 +87,7 @@ describe('Экшены для getOrdersThunk (получение списка з
     });
 
     test('Данные orders должны записаться в стор', () => {
-      const newState = reducer(initialState, action);
+      const newState = reducer(orderInitialState, action);
 
       expect(newState.orders).toEqual(mockOrders);
       expect(newState.orders).toHaveLength(2);
@@ -147,7 +147,7 @@ describe('Экшены для getOrdersThunk (получение списка з
 
   describe('Вызов экшена Failed', () => {
     const startState = {
-      ...initialState,
+      ...orderInitialState,
       orders: [
         {
           _id: '1',
@@ -187,7 +187,7 @@ describe('Экшены для getOrdersThunk (получение списка з
         ...action,
         error: { message: errorMessage }
       };
-      const newState = reducer(initialState, errorAction);
+      const newState = reducer(orderInitialState, errorAction);
 
       expect(newState.orderError).toBe(errorMessage);
     });
@@ -207,7 +207,7 @@ describe('Экшены для getOrderThunk (получение заказа)', 
 
     test('isLoad имеет значение true, а старые ошибки сбрасываются', () => {
       const startState = {
-        ...initialState,
+        ...orderInitialState,
         orderError: 'Предыдущая ошибка'
       };
       const newState = reducer(startState, action);
@@ -218,7 +218,7 @@ describe('Экшены для getOrderThunk (получение заказа)', 
 
     test('orders и order не должны изменяться', () => {
       const stateData = {
-        ...initialState,
+        ...orderInitialState,
         orders: [
           {
             _id: '1',
@@ -262,7 +262,7 @@ describe('Экшены для getOrderThunk (получение заказа)', 
       ]
     }
     const startState = {
-      ...initialState,
+      ...orderInitialState,
       isLoad: true
     };
     const action = { 
@@ -277,7 +277,7 @@ describe('Экшены для getOrderThunk (получение заказа)', 
     });
 
     test('Данные order должны записаться в стор', () => {
-      const newState = reducer(initialState, action);
+      const newState = reducer(orderInitialState, action);
 
       expect(newState.order).toEqual(mockOrder.orders[0]);
       expect(newState.order!.name).toBe('Заказ 1');
@@ -336,7 +336,7 @@ describe('Экшены для getOrderThunk (получение заказа)', 
 
   describe('Вызов экшена Failed', () => {
     const startState = {
-      ...initialState,
+      ...orderInitialState,
       orders: [
         {
           _id: '1',
@@ -376,7 +376,7 @@ describe('Экшены для getOrderThunk (получение заказа)', 
         ...action,
         error: { message: errorMessage }
       };
-      const newState = reducer(initialState, errorAction);
+      const newState = reducer(orderInitialState, errorAction);
 
       expect(newState.orderError).toBe(errorMessage);
     });
