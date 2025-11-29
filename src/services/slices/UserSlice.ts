@@ -206,6 +206,7 @@ export const userSlice = createSlice({
   }
 });
 
+export { initialState as userInitialState };
 export default userSlice.reducer;
 export const { clearUserError } = userSlice.actions;
 export const {
